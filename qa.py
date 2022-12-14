@@ -1,7 +1,8 @@
 import lists
 import config
 import urllib3
-
+# see if it words
+print("A")
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 if __name__ == '__main__':
