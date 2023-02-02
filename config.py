@@ -1,11 +1,17 @@
 import requests
 import inspect
 
+server_protocol = 'https://'
+server_domain = '192.168.199.161'
+api_ver = '/api/v1'
+api_base_url = f'https://{server_domain}/api/v1'
+
+
 header = {
     'accept': 'application/json, text/plain, */*',
     'accept-encoding': 'gzip, deflate, br',
     'accept-language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
-    'referer': 'https://192.168.199.161/setting/system/login',
+    'referer': f'https://{server_domain}/setting/system/login',
     'sec-ch-ua': '\"Google Chrome\";v=\"107\", \"Chromium\";v=\"107\", \"Not=A?Brand\";v=\"24\"',
     'sec-ch-ua-mobile': '?0',
     'sec-ch-ua-platform': '\"Windows\"',
@@ -14,10 +20,6 @@ header = {
     'sec-fetch-site': 'same-origin'
 }
 
-server_protocol = 'https://'
-server_domain = '192.168.199.161'
-api_ver = '/api/v1'
-api_base_url = 'https://192.168.199.161/api/v1'
 
 
 # Login -> Token 발급
@@ -85,7 +87,11 @@ def get_AdminPatternSetting(headers):
 
 
 def get_AdminPatternSettingCVEManual(headers):
-    response = requests.get(f'{api_base_url}/Admin/PatternSetting/CVE/Manual', headers=headers, verify=False)
+    version = 'CVE-583-13-245-20221215'
+    params = {
+        'version': version
+    }
+    response = requests.get(f'{api_base_url}/Admin/PatternSetting/CVE/Manual', headers=headers, params=params, verify=False)
     print(inspect.currentframe().f_code.co_name)
     print(response)
     return response
@@ -99,7 +105,11 @@ def get_AdminPatternSettingCVEOnline(headers):
 
 
 def get_AdminPatternSettingCollectManual(headers):
-    response = requests.get(f'{api_base_url}/Admin/PatternSetting/Collect/Manual', headers=headers, verify=False)
+    version = 'COLLECT-31-2-2-0-20221209'
+    params = {
+        'version': version
+    }
+    response = requests.get(f'{api_base_url}/Admin/PatternSetting/Collect/Manual', headers=headers, params=params, verify=False)
     print(inspect.currentframe().f_code.co_name)
     print(response)
     return response
@@ -127,9 +137,24 @@ def get_AdminUserCheckCount(headers):
 
 
 def get_AgentDownload(headers):
-    response = requests.get(f'{api_base_url}/Agent/Download', headers=headers, verify=False)
-    print(inspect.currentframe().f_code.co_name)
-    print(response)
+    os_list = ['windows', 'linux', 'solaris', 'hpux', 'aix', 'network']
+    for i in range(len(os_list)):
+        os = os_list[i]
+        params = {
+            'os': os
+        }
+        try:
+            response = requests.get(f'{api_base_url}/Agent/Download', headers=headers, params=params, verify=False)
+            if response.status_code == 200:
+                pass
+            else:
+                print(f'[FAIL] {inspect.currentframe().f_code.co_name}: {response}')
+                print(f'{response.text}')
+                print('\n')
+        except requests.exceptions as e:
+            print(f'[ERROR] {inspect.currentframe().f_code.co_name}: {e}')
+            print('\n')
+        print(f'[OKAY] {inspect.currentframe().f_code.co_name}')
     return response
 
 
@@ -267,7 +292,16 @@ def get_AssetStatusHardwareDetail(headers):
 
 
 def get_AssetStatusPortDetail(headers):
-    response = requests.get(f'{api_base_url}/AssetStatus/PortDetail', headers=headers, verify=False)
+    params = {
+        'offset': 1,
+        'limit': 1,
+        'aiNo': 1,
+        'assetGroupFilter': 1,
+        'assetFilter': 1,
+        'filter': 1,
+        'order': 1
+    }
+    response = requests.get(f'{api_base_url}/AssetStatus/PortDetail', headers=headers, params=params, verify=False)
     print(inspect.currentframe().f_code.co_name)
     print(response)
     return response
