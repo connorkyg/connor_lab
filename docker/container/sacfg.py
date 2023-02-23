@@ -1,8 +1,8 @@
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--SOLIDSTEP_MANAGER', type=str, default='1.1.1.1', help='Enter SolidStep Manager IP')
-parser.add_argument('--METIEYE_MANAGER', type=str, default='1.1.1.1', help='Enter MetiEye Manager IP')
+parser.add_argument('--SOLIDSTEP_MANAGER', type=str, help='Enter SolidStep Manager IP')
+parser.add_argument('--METIEYE_MANAGER', type=str, help='Enter MetiEye Manager IP')
 args = parser.parse_args()
 
 SOLIDSTEP_CONTROL = 1 if args.SOLIDSTEP_MANAGER else SOLIDSTEP_CONTROL = 0
