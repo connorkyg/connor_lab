@@ -1,4 +1,46 @@
 Agent = {
+    'GS-linux-64.info': '0644',
+    'MI_FMM-linux-64.info': '0644',
+    'SA-linux-64.info': '0644',
+    'SR-linux-64.info': '0644',
+    'SS_AA-linux-64.info': '0644',
+    'SS_AD-linux-64.info': '0644',
+    'SS_AH-linux-64.info': '0644',
+    'SS_AS-linux-64.info': '0644',
+    'SS_AW-linux-64.info': '0644',
+    'SS_CVE-linux-64.info': '0644',
+    'Uninstaller-linux-64.info': '0644',
+    'Updater-linux-64.info': '0644',
+    'GS-linux-64': '0700',
+    'MI_FMM-linux-64': '0700',
+    'SA-linux-64': '0700',
+    'MI_FMMCFG.ini': '0700',
+    'SACFG.ini': '0600',
+    'SR-linux-64': '0700',
+    'SS_AA-linux-64': '0700',
+    'SS_AD-linux-64': '0700',
+    'SS_AH-linux-64': '0700',
+    'SS_AS-linux-64': '0700',
+    'SS_AW-linux-64': '0700',
+    'SS_CVE-linux-64': '0700',
+    'SS_unixappcfg.ini': '0600',
+    'SS_unixcdcfg.ini': '0600',
+    'SS_unixcfg.ini': '0600',
+    'SS_unixdbcfg.ini': '0600',
+    'SS_unixhypcfg.ini': '0600',
+    'SS_unixpdcfg.ini': '0600',
+    'SS_unixpfcfg.ini': '0600',
+    'SS_unixwebcfg.ini': '0600',
+    'Uninstaller-linux-64': '0700',
+    'Updater-linux-64': '0700',
+    'sa.crt': '0600',
+    'sa.key.pem': '0600',
+    'ssrca.crt': '0600',
+    'ssrca.pub': '0600'
+}
+
+
+Agent_oct = {
     'GS-linux-64.info': 0o644,
     'MI_FMM-linux-64.info': 0o644,
     'SA-linux-64.info': 0o644,
@@ -38,5 +80,3 @@ Agent = {
     'ssrca.crt': 0o600,
     'ssrca.pub': 0o600
 }
-
-

@@ -2,7 +2,6 @@ import os
 import datetime
 import subprocess
 import argparse
-from ping3 import ping
 
 import ingredients
 import cells
@@ -27,17 +26,13 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     try:
-        ping('192.168.1.112')
         os = 'linux'
         remote = f'192.168.1.112:/DATA1/lab/LAB/SolidStep/Agent/{args.agent_version}/{os}'
         path = '/mnt/ssr_mount'
         local = f'./tmp_{now}/{args.agent_version}'  # COMMENT: dockerfile이 위치한 경로 기준이므로, 상대 경로로 표시해주어야 함 (현재 경로가 무난)
 
-        # mkdir -> mount -> cp to local
         command(f'mkdir -p {path}')
         command(f'mkdir -p {local}')
-        # os.makedirs(path, exist_ok=True)
-        # os.makedirs(local, exist_ok=True)
         command(f'mount {remote} {path}')
         for file in cells.Agent:
             command(f'cp {path}/{file} {local}')

@@ -5,10 +5,19 @@ parser.add_argument('--SOLIDSTEP_MANAGER', type=str, help='Enter SolidStep Manag
 parser.add_argument('--METIEYE_MANAGER', type=str, help='Enter MetiEye Manager IP')
 args = parser.parse_args()
 
-SOLIDSTEP_CONTROL = 1 if args.SOLIDSTEP_MANAGER else SOLIDSTEP_CONTROL = 0
-METIEYE_CONTROL = 1 if args.METIEYE_MANAGER else METIEYE_CONTROL = 0
+if args.SOLIDSTEP_MANAGER:
+    SOLIDSTEP_CONTROL = 1
+else:
+    args.SOLIDSTEP_MANAGER = '1.1.1.1'
+    SOLIDSTEP_CONTROL = 0
 
-SACFG = f'''
+if args.METIEYE_MANAGER:
+    METIEYE_CONTROL = 1
+else:
+    args.METIEYE_MANAGER = '1.1.1.1'
+    METIEYE_CONTROL = 0
+
+SACFG = f'''\
 [COMMON]
 ENCKEY=IE/JSIQa9ZHcL3yiUS2mAw==
 ENABLE_ENCRYPT=1
@@ -52,7 +61,7 @@ PREPATH=
 
 [AUTOSEARCH]
 IPRANGE=<<EOT
-EOT
+EOT\
 '''
 
 path = '/SSR/SACFG.ini'
