@@ -1,0 +1,8 @@
+version: "1.0"
+services:
+  ssr_agent:
+    image: itzconnor/work:1.3
+    volumes:
+      - ./2.41.4841756:/SSR
+    ports:
+      - 443:443

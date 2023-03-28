@@ -21,8 +21,8 @@ def command(cmd):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-a', '--agent_version', type=str, required=True, help='Enter agent version (ex. 2.41.4841755)')
-    parser.add_argument('-ssip', '--ss_manager_ip', type=str, default='192.168.199.224', help='Enter SolidStep manager ip (ex. 192.168.1.100')
-    # parser.add_argument('-meip', '--me_manager_ip', type=str, default='192.168.199.222', help='Enter MetiEye manager ip (ex. 192.168.1.100')
+    parser.add_argument('-ssip', '--ss_manager_ip', type=str, default='192.168.199.224', help='Enter SolidStep manager ip (ex. 192.168.1.100)')
+    # parser.add_argument('-meip', '--me_manager_ip', type=str, default='192.168.199.222', help='Enter MetiEye manager ip (ex. 192.168.1.100)')
     args = parser.parse_args()
 
     try:
@@ -35,7 +35,7 @@ if __name__ == '__main__':
         command(f'mkdir -p {local}')
         command(f'mount {remote} {path}')
         for file in cells.Agent:
-            command(f'cp {path}/{file} {local}')
+            command(f'cp {path}/{file}  {local}')
 
         ingredients.dockerfile(local, args)
 
